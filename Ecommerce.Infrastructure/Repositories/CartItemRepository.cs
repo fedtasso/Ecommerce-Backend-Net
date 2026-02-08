@@ -39,6 +39,6 @@ public class CartItemRepository : ICartItemRepository
     {
         await _context.CartItems
             .Where(ci => ci.CartId == cartId)
-            .ExecuteDeleteAsync();   // EF Core 7+
+            .ExecuteDeleteAsync();
     }
 }

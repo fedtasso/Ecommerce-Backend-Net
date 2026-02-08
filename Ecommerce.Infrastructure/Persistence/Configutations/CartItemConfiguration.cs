@@ -15,16 +15,6 @@ public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
         entity.Property(ci => ci.Id)
               .ValueGeneratedOnAdd();
 
-      //   entity.HasOne(ci => ci.Cart)
-      //         .WithMany(c => c.Items)
-      //         .HasForeignKey("cart_id")
-      //         .IsRequired();
-
-      //   entity.HasOne(ci => ci.Product)
-      //         .WithMany()
-      //         .HasForeignKey("product_id")
-      //         .IsRequired();
-
         entity.Property(ci => ci.CartId)
               .HasColumnName("cart_id")
               .IsRequired();
