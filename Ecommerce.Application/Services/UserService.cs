@@ -25,7 +25,7 @@ public class UserService : IUserService
     public async Task<UserResponse> CreateUserAsync(UserCreateRequest request)
     {
         if (await _userRepository.ExistsByEmailAsync(request.Email))
-            throw new Exception($"Email already exists: {request.Email}");
+            throw new Exception($"El correo electrónico ya está registrado: {request.Email}");
 
         var user = _userMapper.ToEntity(request);
 
@@ -48,7 +48,7 @@ public class UserService : IUserService
     public async Task<UserResponse> GetUserByEmailAsync(string email)
     {
         var user = await _userRepository.GetByEmailAsync(email)
-                   ?? throw new Exception("User not found");
+                   ?? throw new Exception("Usuario no encontrado");
 
         return _userMapper.ToResponse(user);
     }
@@ -56,7 +56,7 @@ public class UserService : IUserService
     public async Task<UserResponse> GetUserByIdAsync(long id)
     {
         var user = await _userRepository.GetByIdAsync(id)
-                   ?? throw new Exception("User not found");
+                   ?? throw new Exception("Usuario no encontrado");
 
         return _userMapper.ToResponse(user);
     }
@@ -64,13 +64,13 @@ public class UserService : IUserService
     public async Task<UserResponse> UpdateUserAsync(long id, UserUpdateRequest request)
     {
         var dbUser = await _userRepository.GetByIdAsync(id)
-                     ?? throw new Exception("User not found");
+                     ?? throw new Exception("Usuario no encontrado");
 
         if (!string.IsNullOrWhiteSpace(request.Email) &&
             request.Email != dbUser.Email &&
             await _userRepository.ExistsByEmailAsync(request.Email))
         {
-            throw new Exception($"Email already exists: {request.Email}");
+            throw new Exception($"El correo electrónico ya está registrado: {request.Email}");
         }
 
         if (!string.IsNullOrWhiteSpace(request.Name))
@@ -93,7 +93,7 @@ public class UserService : IUserService
     public async Task DeleteUserAsync(long id)
     {
         var user = await _userRepository.GetByIdAsync(id)
-                   ?? throw new Exception("User not found");
+                   ?? throw new Exception("Usuario no encontrado");
 
         await _userRepository.DeleteAsync(user);
     }
@@ -101,13 +101,13 @@ public class UserService : IUserService
     public async Task UpdatePasswordAsync(long id, UserPasswordUpdateRequest request)
     {
         var user = await _userRepository.GetByIdAsync(id)
-                   ?? throw new Exception("User not found");
+                   ?? throw new Exception("Usuario no encontrado");
 
         if (!_passwordHasher.Verify(request.CurrentPassword, user.Password))
-            throw new Exception("Invalid credentials");
+            throw new Exception("Credenciales invalidas");
 
         if (_passwordHasher.Verify(request.NewPassword, user.Password))
-            throw new Exception("Same password");
+            throw new Exception("La nueva contraseña no puede ser igual a la actual");
 
         user.SetPassword(
             _passwordHasher.Hash(request.NewPassword)
@@ -121,7 +121,7 @@ public class UserService : IUserService
         var user = await _userRepository.GetByEmailAsync(email);
 
         if (user == null || !_passwordHasher.Verify(password, user.Password))
-            throw new Exception("Invalid credentials");
+            throw new Exception("Credenciales invalidas");
 
         return _userMapper.ToResponse(user);
     }

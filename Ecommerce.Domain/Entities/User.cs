@@ -64,7 +64,7 @@ public class User
     public void SetPassword(string hashedPassword)
     {
         if (string.IsNullOrWhiteSpace(hashedPassword))
-            throw new ArgumentException("Password cannot be empty");
+            throw new ArgumentException("La contrasela es requerida");
 
         Password = hashedPassword;
     }
@@ -72,7 +72,7 @@ public class User
     public void SetName(string name)
     {
         if (string.IsNullOrWhiteSpace(name))
-            throw new ArgumentException("Name cannot be empty");
+            throw new ArgumentException("El nombre es requerido");
 
         Name = name;
     }
@@ -80,7 +80,7 @@ public class User
     public void SetEmail(string email)
     {
         if (string.IsNullOrWhiteSpace(email))
-            throw new ArgumentException("Email cannot be empty");
+            throw new ArgumentException("El email es requerido");
 
         Email = email;
     }
