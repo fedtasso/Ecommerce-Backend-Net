@@ -23,9 +23,14 @@ public class CartItemConfiguration : IEntityTypeConfiguration<CartItem>
               .HasColumnName("product_id")
               .IsRequired();
 
+      //   entity.HasOne(ci => ci.Cart)
+      //         .WithMany(c => c.Items)
+      //         .HasForeignKey(ci => ci.CartId);
+
         entity.HasOne(ci => ci.Cart)
-              .WithMany(c => c.Items)
-              .HasForeignKey(ci => ci.CartId);
+              .WithMany("_items")
+              .HasForeignKey(ci => ci.CartId)
+              .IsRequired();
 
         entity.HasOne(ci => ci.Product)
               .WithMany()

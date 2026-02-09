@@ -9,6 +9,7 @@ public class Cart
     public User User { get; private set; } = null!;
 
     private readonly List<CartItem> _items = new();
+
     public IReadOnlyCollection<CartItem> Items => _items.AsReadOnly();
 
     public decimal TotalPrice { get; private set; }
@@ -19,6 +20,9 @@ public class Cart
     public DateTime UpdatedAt { get; private set; }
 
     // Constructor de dominio
+
+    private Cart() { } // TODO estudiar, agregado para resolver error en migrations
+
     public Cart(User user)
     {
         User = user;

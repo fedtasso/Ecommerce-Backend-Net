@@ -23,6 +23,8 @@ public class CartItem
     public DateTime UpdatedAt { get; private set; }
 
     // Constructor de dominio
+
+    private CartItem() { } // TODO estudiar, agregado para resolver error en migrations
     public CartItem(Cart cart, Product product, int quantity)
     {
         Cart = cart;

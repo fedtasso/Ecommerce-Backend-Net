@@ -35,6 +35,8 @@ public class CartConfiguration : IEntityTypeConfiguration<Cart>
               .HasColumnName("user_id")
               .IsRequired();
 
+        entity.Ignore(c => c.Items);  //TODO estudiar y revisar esta configuracion
+
         entity.HasOne(c => c.User)
               .WithOne()
               .HasForeignKey<Cart>(c => c.UserId)              
@@ -43,7 +45,7 @@ public class CartConfiguration : IEntityTypeConfiguration<Cart>
         // Relación 1 a muchos con CartItem
         entity.HasMany<CartItem>("_items")
               .WithOne(ci => ci.Cart)
-              .HasForeignKey("cart_id")
+              .HasForeignKey(ci => ci.CartId)
               .IsRequired();
     }
 }
