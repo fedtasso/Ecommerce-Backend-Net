@@ -5,6 +5,15 @@ Este proyecto surge como migración y re–diseño de un backend originalmente i
 
 ---
 
+##  Deploy 
+
+🔗 Back en Render: https://ecommerce-backend-net.onrender.com
+
+🔗 Frontend conectado a esta API: https://fedtasso-e-commerce-react-net.netlify.app/
+
+
+---
+
 ## 🧱 Arquitectura
 
 El proyecto está organizado siguiendo **Clean Architecture**, separando responsabilidades en capas bien definidas y evitando dependencias hacia frameworks desde el dominio.

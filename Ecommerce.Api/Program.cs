@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
                 "http://localhost:5173",   // Vite dev
                 "http://localhost:4173",   // Vite preview
                 "http://localhost:3000",   // React dev
-                "https://fedtasso-ecommerce-net.netlify.app"
+                "https://fedtasso-e-commerce-react-net.netlify.app/"
             )
             .WithMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
             .AllowAnyHeader()
