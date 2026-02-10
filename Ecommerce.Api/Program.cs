@@ -80,6 +80,8 @@ app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseHttpsRedirection();
 
+app.UseCors("CorsPolicy");
+
 app.MapControllers();
 
 app.Run();
