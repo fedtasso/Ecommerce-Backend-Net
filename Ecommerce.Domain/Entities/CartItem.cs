@@ -56,4 +56,13 @@ public class CartItem
         Quantity += amount;
         RecalculateSubtotal();
     }
+
+        public void SetQuantity(int quantity)
+    {
+        if (quantity <= 0)
+            throw new ArgumentException("La cantidad debe ser mayor a cero");
+
+        Quantity = quantity;
+        RecalculateSubtotal();
+    }
 }

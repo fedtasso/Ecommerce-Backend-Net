@@ -34,6 +34,8 @@ builder.Services.AddScoped<UserMapper>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ProductMapper>();
+builder.Services.AddScoped<ICartService, CartService>();
+builder.Services.AddScoped<CartMapper>();
 
 
 builder.Services.AddOpenApi();
