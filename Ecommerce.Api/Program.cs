@@ -22,7 +22,7 @@ builder.Services.AddCors(options =>
                 "http://localhost:3000",   // React dev
                 "https://fedtasso-e-commerce-react-net.netlify.app"
             )
-            .AllowAnyMethod()
+            .WithMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
             .AllowAnyHeader()
             .AllowCredentials();
     });
