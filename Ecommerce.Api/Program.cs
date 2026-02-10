@@ -34,7 +34,10 @@ builder.Services.AddSwaggerGen();
 
 var connectionString =
     builder.Configuration.GetConnectionString("DefaultConnection")
-    ?? builder.Configuration["DATABASE_URL"];
+    ?? builder.Configuration["ConnectionStrings__DefaultConnection"] // Render
+    ?? throw new InvalidOperationException("Connection string not found");
+    
+    // ?? builder.Configuration["DATABASE_URL"];
 
 
 builder.Services.AddDbContext<EcommerceDbContext>(options =>
@@ -60,6 +63,12 @@ builder.Services.AddScoped<CartMapper>();
 
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<EcommerceDbContext>();
+    db.Database.Migrate(); // crea las tablas si no existen
+}
 
 if (app.Environment.IsDevelopment())
 {
