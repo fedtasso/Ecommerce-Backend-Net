@@ -66,4 +66,35 @@ public class Product
 
         Price = newPrice;
     }
+
+      public void SetTitle(string title)
+    {
+        if (string.IsNullOrWhiteSpace(title))
+            throw new ArgumentException("El título no puede estar vacío");
+        Title = title;
+    }
+
+    public void SetCategory(string category)
+    {
+        if (string.IsNullOrWhiteSpace(category))
+            throw new ArgumentException("La categoría no puede estar vacía");
+        Category = category;
+    }
+
+    public void SetDescription(string? description)
+    {
+        Description = description;
+    }
+
+    public void SetImage(string? image)
+    {
+        Image = image;
+    }
+
+    public void SetStock(int stock)
+    {
+        if (stock < 0)
+            throw new ArgumentException("El stock no puede ser negativo");
+        Stock = stock;
+    }
 }

@@ -22,14 +22,19 @@ builder.Services.AddDbContext<EcommerceDbContext>(options =>
         b => b.MigrationsAssembly("Ecommerce.Infrastructure")
     )
 );
-
+// Repositories
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICartRepository, CartRepository>();
 builder.Services.AddScoped<ICartItemRepository, CartItemRepository>();
+
+//Services
 builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
 builder.Services.AddScoped<UserMapper>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<ProductMapper>();
+
 
 builder.Services.AddOpenApi();
 

@@ -62,7 +62,7 @@ public class CartRepository : ICartRepository
     public async Task<Cart?> GetByUserIdWithItemsAsync(long userId)
     {
         return await _context.Carts
-                             .Include(c => c.Items)   // JOIN FETCH
+                             .Include(c => c.Items)
                              .AsNoTracking()
                              .FirstOrDefaultAsync(c => c.UserId == userId);
     }
