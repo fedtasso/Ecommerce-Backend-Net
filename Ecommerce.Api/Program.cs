@@ -11,6 +11,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+// Configuración de CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins(
+                "http://localhost:5173",   // Vite dev
+                "http://localhost:4173",   // Vite preview
+                "http://localhost:3000",   // React dev
+                "https://fedtasso-ecommerce-net.netlify.app"
+            )
+            .WithMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS")
+            .AllowAnyHeader()
+            .AllowCredentials();
+    });
+});
+
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
